@@ -8,13 +8,14 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
+
+
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import basicTests.BasicTestObjects;
-
-public class MarketsTest extends BasicTestObjects{
+public class MarketsTest{
 	  private WebDriver driver;
 
 	    @BeforeTest
@@ -88,10 +89,6 @@ public class MarketsTest extends BasicTestObjects{
 	    public void changeLanguage() {
 	        // Implement logic to change the language to Français
 	        // Use appropriate element locators and interactions
-	    	//WebElement continueButton = driver.findElement(By.xpath("//*[@id=\"inner-wrap\"]/div[1]/div/section/article/div/div/div/div/div[2]/button")); // Replace with actual submit button ID
-	    //	Select drpCountry = new Select(driver.findElement(By.name("country")));
-	    //	drpCountry.selectByVisibleText("France");
-	    	//continueButton.click();
 	    	
 	    	 try {
 	             // Locate the language dropdown
@@ -105,7 +102,7 @@ public class MarketsTest extends BasicTestObjects{
 
 	             // Optionally, wait for the page to reload or for language-specific content to load
 	             WebDriverWait wait = new WebDriverWait(driver, 10);
-	             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(),'Bienvenido')]")));
+	             wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h1[contains(text(),'Quotidien')]")));
 	    	 
 	    } finally {
             // Close the WebDriver
@@ -118,6 +115,10 @@ public class MarketsTest extends BasicTestObjects{
 	    public void chooseAnswerAndVerify() {
 	        // Implement logic to choose "Quotidien" and verify the next step is loaded
 	        // Use appropriate element locators and interactions
+	    	WebElement chooseAnswer = driver.findElement(By.id("Quotidien")); // Replace with actual submit button ID
+	    	chooseAnswer.click();
+	    	 WebElement quotidien = driver.findElement(By.xpath("//h1[contains(text(),'Quotidien')]")); // Replace with actual element
+		     Assert.assertTrue(quotidien.isDisplayed(), "Quotidien");
 	    }
 
 	    @AfterTest
